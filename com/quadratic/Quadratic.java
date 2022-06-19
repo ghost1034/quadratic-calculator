@@ -21,10 +21,14 @@ public class Quadratic {
 	
 	public Quadratic(String equation) {
 		setAbc(equation);
-		negativeB = b * -1;
-		discriminant = new SquareRoot(b * b - 4 * a * c);
-		twoA = 2 * a;
-		divideByGcf();
+		if (a == 0) {
+			clear();
+		} else {
+			negativeB = b * -1;
+			discriminant = new SquareRoot(b * b - 4 * a * c);
+			twoA = 2 * a;
+			divideByGcf();
+		}
 	}
 	
 	public double getA() {
@@ -78,7 +82,7 @@ public class Quadratic {
 	
 	private void setAbc(String equation) {
 		valid = true;
-		if (!equation.contains(Term.X_SQUARED) || equation.split("=").length > 2 || equation.trim().startsWith("=") || equation.trim().endsWith("=")) {
+		if (equation.split("=").length > 2 || equation.trim().startsWith("=") || equation.trim().endsWith("=")) {
 			clear();
 			return;
 		}
